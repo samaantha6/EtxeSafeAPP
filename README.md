@@ -44,5 +44,5 @@ npm run dev
 
 ### 5. Ver la aplicación
 ```bash
-La terminal te dará un enlace (normalmente http://localhost:5173).
+La terminal te dará un enlace (normalmente http://localhost:5173)
 ```
