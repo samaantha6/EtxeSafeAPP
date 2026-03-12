@@ -25,7 +25,7 @@ Es necesario tener instalado **Node.js** (versión LTS recomendada).
 
 ### 2. Clonar el repositorio
 ```bash
-git clone [URL_DE_TU_REPOSITORIO]
+git clone https://github.com/samaantha6/EtxeSafeAPP.git
 cd "EtxeSafe APP"
 ```
 
