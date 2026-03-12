@@ -27,3 +27,21 @@ Es necesario tener instalado **Node.js** (versión LTS recomendada).
 ```bash
 git clone [URL_DE_TU_REPOSITORIO]
 cd "EtxeSafe APP"
+```
+
+### 3. Instalar dependencias
+Abre una terminal en la carpeta del proyecto y ejecuta:
+```bash
+npm install
+```
+Este paso descargará la carpeta node_modules necesaria para que el proyecto funcione.
+
+### 4. Arrancar el servidor de desarrollo
+Una vez terminada la instalación, inicia la aplicación con:
+```bash
+npm run dev
+```
+### 5. Ver la aplicación
+```bash
+La terminal te dará un enlace (normalmente http://localhost:5173). Ábrelo en tu navegador para interactuar con el prototipo.
+```
