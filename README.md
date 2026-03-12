@@ -1,6 +1,6 @@
 # EtxeSafe APP 🏠🛡️
 
-**EtxeSafe** es una solución innovadora de **InsurTech** diseñada para agilizar la gestión de siniestros de hogar (cristales, vitrocerámicas y espejos) mediante el uso de formularios dinámicos y validación por imagen.
+**EtxeSafe** es una solución innovadora de diseñada para agilizar la gestión de siniestros de hogar (cristales, vitrocerámicas y espejos) mediante el uso de formularios dinámicos y validación por imagen.
 
 ## 🚀 Características principales
 * **Login Seguro:** Acceso personalizado para clientes.
@@ -16,7 +16,7 @@
 
 ## 📦 Instalación y Uso Local
 
-Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
+Para ejecutar este proyecto en local, sigue estos pasos:
 
 ### 1. Requisitos Previos
 Es necesario tener instalado **Node.js** (versión LTS recomendada).
@@ -41,7 +41,8 @@ Una vez terminada la instalación, inicia la aplicación con:
 ```bash
 npm run dev
 ```
+
 ### 5. Ver la aplicación
 ```bash
-La terminal te dará un enlace (normalmente http://localhost:5173). Ábrelo en tu navegador para interactuar con el prototipo.
+La terminal te dará un enlace (normalmente http://localhost:5173).
 ```
