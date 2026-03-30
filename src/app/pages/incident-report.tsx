@@ -5,6 +5,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
+import { useClaims } from "../../context/ClaimsContext";
 import {
   Select,
   SelectContent,
@@ -18,17 +19,27 @@ export default function IncidentReport() {
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("");
   const [category, setCategory] = useState("");
+  const { addClaim } = useClaims();
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!category) {
-      alert("Por favor, selecciona una categoría");
-      return;
-    }
-    
-    navigate("/camera");
+  e.preventDefault();
+
+  if (!category) {
+    alert("Por favor, selecciona una categoría");
+    return;
+  }
+
+  const newClaim = {
+    id: `PA-2026-${Math.floor(Math.random() * 1000)}`,
+    type: category,
+    status: "pendiente" as const,
+    date: new Date().toLocaleDateString(),
   };
+
+  addClaim(newClaim);
+
+  navigate("/camera");
+};
 
   return (
     <div className="min-h-screen bg-background">
@@ -36,7 +47,7 @@ export default function IncidentReport() {
       <div className="bg-primary text-primary-foreground p-6 sticky top-0 z-10 shadow-md">
         <div className="max-w-md mx-auto flex items-center gap-4">
           <button
-            type="button" // IMPORTANTE: para que no haga submit
+            type="button" 
             onClick={() => navigate("/dashboard")}
             className="hover:opacity-80 transition-opacity"
             aria-label="Volver"
@@ -66,14 +77,14 @@ export default function IncidentReport() {
                   <SelectValue placeholder="Selecciona una categoría" />
                 </SelectTrigger>
                 <SelectContent position="popper"> 
-                  <SelectItem value="vitroceramica">Vitrocerámica</SelectItem>
-                  <SelectItem value="cristaleria">Cristalería</SelectItem>
-                  <SelectItem value="espejos">Espejos</SelectItem>
-                  <SelectItem value="mamparas">Mamparas</SelectItem>
-                  <SelectItem value="sanitarios">Sanitarios</SelectItem>
-                  <SelectItem value="encimeras">Encimeras</SelectItem>
-                  <SelectItem value="mobiliario">Mobiliario Fijo</SelectItem>
-                  <SelectItem value="otros">Otros</SelectItem>
+                  <SelectItem value="Vitroceramica">Vitrocerámica</SelectItem>
+                  <SelectItem value="Cristaleria">Cristalería</SelectItem>
+                  <SelectItem value="Espejos">Espejos</SelectItem>
+                  <SelectItem value="Mamparas">Mamparas</SelectItem>
+                  <SelectItem value="Sanitarios">Sanitarios</SelectItem>
+                  <SelectItem value="Encimeras">Encimeras</SelectItem>
+                  <SelectItem value="Mobiliario">Mobiliario Fijo</SelectItem>
+                  <SelectItem value="Otros">Otros</SelectItem>
                 </SelectContent>
               </Select>
             </div>
