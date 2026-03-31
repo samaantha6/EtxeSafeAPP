@@ -10,6 +10,8 @@ import {
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { useClaims } from "../../context/ClaimsContext";
+import { getPricePerCm2 } from "../../utils/pricing";
+
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -44,20 +46,32 @@ export default function Dashboard() {
   const [loadingId, setLoadingId] = useState<string | null>(null);
 
   const handleClaimClick = (claim: any) => {
-    if (claim.amount) return; 
-    setLoadingId(claim.id);
 
-    setTimeout(() => {
-      const base = 100;
-      const randomAmount = (base + Math.random() * 300).toFixed(2);
+    console.log("CLAIM COMPLETO:", claim);
+    console.log("TYPE:", claim.type);
+    console.log("SIZE:", claim.size);
+    console.log("PRICE:", getPricePerCm2(claim.type));
+  if (claim.amount) return;
 
-      updateClaim(claim.id, {
-        amount: `${randomAmount} €`,
-      });
+  setLoadingId(claim.id);
 
-      setLoadingId(null);
-    }, 1500);
-  };
+  setTimeout(() => {
+    const size = Number(claim.size);
+
+    const pricePerCm2 = getPricePerCm2(claim.type); 
+    const calculated = size * pricePerCm2;
+    const variation = 0.9 + Math.random() * 0.2; // ±10%
+
+    const finalPrice = calculated * variation;
+
+    updateClaim(claim.id, {
+      amount: `${finalPrice.toFixed(2)} €`,
+    });
+
+    setLoadingId(null);
+  }, 1500);
+};
+
 
   return (
     <div className="min-h-screen bg-background pb-24">
@@ -98,7 +112,7 @@ export default function Dashboard() {
                 </Badge>
               </div>
 
-              {/* 👇 ZONA DE ACCIÓN SEPARADA */}
+              {/* ZONA DE ACCIÓN SEPARADA */}
               <div
                 className="flex items-center justify-between text-sm"
                 onClick={(e) => e.stopPropagation()} // 🔥 clave

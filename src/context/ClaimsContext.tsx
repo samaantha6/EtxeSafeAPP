@@ -7,6 +7,7 @@ export interface Claim {
   date: string;
   amount?: string;
   description?: string;
+  size?: number;
 }
 
 interface ClaimsContextType {
@@ -25,7 +26,8 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
       status: "Pendiente",
       date: "12/03/2026",
       amount: "210,00 €",
-      description: "Vitrocerámica con varias grietas y zonas dañadas que impiden su correcto funcionamiento. Riesgo de uso y necesidad de sustitución."
+      description: "Vitrocerámica con varias grietas y zonas dañadas que impiden su correcto funcionamiento. Riesgo de uso y necesidad de sustitución.",
+      size: 30
     },
     {
       id: "PA-2026-002",
@@ -33,7 +35,9 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
       status: "En revisión",
       date: "11/03/2026",
       amount: "155,50 €",
-      description: "Cristal roto en ventana principal tras impacto. Se evalúa el alcance del daño y el tipo de vidrio necesario para la reposición."
+      description: "Cristal roto en ventana principal tras impacto. Se evalúa el alcance del daño y el tipo de vidrio necesario para la reposición.",
+      size: 15
+
     },
     {
       id: "PA-2026-003",
@@ -41,7 +45,9 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
       status: "Resuelto",
       date: "10/03/2026",
       amount: "380,00 €",
-      description: "Mampara de baño dañada con rotura parcial de uno de los paneles. Sustitución completa ya realizada."
+      description: "Mampara de baño dañada con rotura parcial de uno de los paneles. Sustitución completa ya realizada.",
+      size: 50
+
     },
     {
       id: "PA-2026-004",
@@ -49,7 +55,9 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
       status: "En revisión",
       date: "09/03/2026",
       amount: "85,00 €",
-      description: "Espejo con fisuras visibles en la superficie debido a un golpe. Se está valorando si reparar o reemplazar."
+      description: "Espejo con fisuras visibles en la superficie debido a un golpe. Se está valorando si reparar o reemplazar.",
+      size: 10
+
     },
     {
       id: "PA-2026-005",
@@ -57,10 +65,13 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
       status: "Pendiente",
       date: "08/03/2026",
       amount: "120,00 €",
-      description: "Loza sanitaria dañada con grietas en el inodoro. Se requiere revisión para determinar el tipo de reparación o sustitución."
+      description: "Loza sanitaria dañada con grietas en el inodoro. Se requiere revisión para determinar el tipo de reparación o sustitución.",
+      size: 12
+
     },
   ]);
 
+  
   const addClaim = (claim: Claim) => {
     setClaims((prev) => [claim, ...prev]);
   };

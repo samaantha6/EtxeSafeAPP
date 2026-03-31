@@ -29,12 +29,23 @@ export default function IncidentReport() {
     return;
   }
 
+  if (!size || isNaN(Number(size)) || Number(size) <= 0) {
+    alert("Por favor, introduce un tamaño válido");
+    return;
+  }
+
+  if (!description) {
+    alert("Por favor, añade una descripción");
+    return;
+  }
+
   const newClaim = {
     id: `PA-2026-${Math.floor(Math.random() * 1000)}`,
     type: category,
     status: "Pendiente" as const,
     date: new Date().toLocaleDateString(),
     description,
+    size: Number(size), // 👈 correcto
   };
 
   addClaim(newClaim);

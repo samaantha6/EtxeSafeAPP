@@ -38,7 +38,8 @@ export default function ClaimDetail() {
           <p><strong>Estado:</strong> {claim.status}</p>
           <p><strong>Fecha:</strong> {claim.date}</p>
           <p><strong>Importe:</strong> {claim.amount || "Pendiente"}</p>
-          <p><strong>Descripción:</strong> {claim.description}</p>
+          <p><strong>Tamaño:</strong> {claim.size} cm²</p>
+          <p><strong>Descripción:</strong> {claim.description} </p>
         </div>
 
       </div>
