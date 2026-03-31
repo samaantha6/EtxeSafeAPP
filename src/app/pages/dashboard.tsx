@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { Power } from "lucide-react";
 import {
   Plus,
   FileText,
@@ -77,11 +78,25 @@ export default function Dashboard() {
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
       <div className="bg-primary text-primary-foreground p-6 pb-8">
-        <div className="max-w-md mx-auto">
-          <h1 className="text-3xl mb-1">Mis Incidencias</h1>
-          <p className="text-primary-foreground/80">
-            Consulta tus incidencias
-          </p>
+        <div className="max-w-md mx-auto flex items-center justify-between">
+
+          {/* Botón izquierda */}
+          <button
+            onClick={() => navigate("/")}
+            className="p-3 rounded-full hover:bg-white/20 transition"
+            aria-label="Cerrar sesión"
+            >
+            <Power className="w-7 h-7" />
+          </button>
+
+          {/* Título centrado */}
+          <div className="text-center flex-1">
+            <h1 className="text-3xl mb-1">Mis Incidencias</h1>
+            <p className="text-primary-foreground/80">Consulta tus incidencias</p>
+          </div>
+
+          <div className="w-10"></div>
+
         </div>
       </div>
 
@@ -115,7 +130,7 @@ export default function Dashboard() {
               {/* ZONA DE ACCIÓN SEPARADA */}
               <div
                 className="flex items-center justify-between text-sm"
-                onClick={(e) => e.stopPropagation()} // 🔥 clave
+                onClick={(e) => e.stopPropagation()} 
               >
                 <span className="text-muted-foreground">
                   {claim.date}

@@ -45,7 +45,7 @@ export default function IncidentReport() {
     status: "Pendiente" as const,
     date: new Date().toLocaleDateString(),
     description,
-    size: Number(size), // 👈 correcto
+    size: Number(size), 
   };
 
   addClaim(newClaim);
