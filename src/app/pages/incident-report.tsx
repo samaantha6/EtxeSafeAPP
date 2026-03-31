@@ -5,7 +5,6 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
-import { useClaims } from "../../context/ClaimsContext";
 import {
   Select,
   SelectContent,
@@ -19,7 +18,6 @@ export default function IncidentReport() {
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("");
   const [category, setCategory] = useState("");
-  const { addClaim } = useClaims();
 
   const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
@@ -29,28 +27,23 @@ export default function IncidentReport() {
     return;
   }
 
-  if (!size || isNaN(Number(size)) || Number(size) <= 0) {
-    alert("Por favor, introduce un tamaño válido");
-    return;
-  }
-
-  if (!description) {
+  if (!description.trim()) {
     alert("Por favor, añade una descripción");
     return;
   }
 
-  const newClaim = {
-    id: `PA-2026-${Math.floor(Math.random() * 1000)}`,
-    type: category,
-    status: "Pendiente" as const,
-    date: new Date().toLocaleDateString(),
-    description,
-    size: Number(size), 
-  };
+  if (size === "" || isNaN(Number(size)) || Number(size) < 0) {
+    alert("Por favor, introduce un tamaño válido (0 o mayor)");
+    return;
+  }
 
-  addClaim(newClaim);
-
-  navigate("/camera");
+  navigate("/camera", {
+    state: {
+      category,
+      description,
+      size: Number(size),
+    },
+  });
 };
 
   return (
@@ -121,6 +114,7 @@ export default function IncidentReport() {
               <Input
                 id="size"
                 type="number"
+                min="0"
                 placeholder="Ej: 50"
                 value={size}
                 onChange={(e) => setSize(e.target.value)}

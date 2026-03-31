@@ -2,12 +2,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { X, Zap, ZapOff, Check } from "lucide-react";
 import { Button } from "../components/ui/button";
+import { useLocation } from "react-router";
+import { useClaims } from "../../context/ClaimsContext";
+
 
 export default function Camera() {
   const navigate = useNavigate();
   const [flashOn, setFlashOn] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
   const [showPreview, setShowPreview] = useState(false);
+  const { state } = useLocation();
+  const { addClaim } = useClaims(); 
 
   const handleCapture = () => {
     // Simulate photo capture with a placeholder
@@ -22,7 +27,16 @@ export default function Camera() {
   };
 
   const handleSubmit = () => {
-    // Navigate back to dashboard after submission
+    const newClaim = {
+      id: `PA-2026-${Math.floor(Math.random() * 1000)}`,
+      type: state.category,
+      status: "Pendiente" as const,
+      date: new Date().toLocaleDateString(),
+      description: state.description,
+      size: Number(state.size), 
+    };
+    
+    addClaim(newClaim);
     navigate("/dashboard");
   };
 
