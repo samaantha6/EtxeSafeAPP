@@ -32,8 +32,9 @@ export default function IncidentReport() {
   const newClaim = {
     id: `PA-2026-${Math.floor(Math.random() * 1000)}`,
     type: category,
-    status: "pendiente" as const,
+    status: "Pendiente" as const,
     date: new Date().toLocaleDateString(),
+    description,
   };
 
   addClaim(newClaim);

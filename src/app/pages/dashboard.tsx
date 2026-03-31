@@ -13,11 +13,11 @@ import { useClaims } from "../../context/ClaimsContext";
 
 const getStatusColor = (status: string) => {
   switch (status) {
-    case "resuelto":
+    case "Resuelto":
       return "bg-green-100 text-green-700 border-green-200";
-    case "pendiente":
+    case "Pendiente":
       return "bg-red-100 text-red-700 border-red-200";
-    case "en revisión":
+    case "En revisión":
       return "bg-yellow-100 text-yellow-700 border-yellow-200";
     default:
       return "";
@@ -26,11 +26,11 @@ const getStatusColor = (status: string) => {
 
 const getStatusIcon = (status: string) => {
   switch (status) {
-    case "resuelto":
+    case "Resuelto":
       return <CheckCircle className="w-4 h-4" />;
-    case "pendiente":
+    case "Pendiente":
       return <Clock className="w-4 h-4" />;
-    case "en revisión":
+    case "En revisión":
       return <FileText className="w-4 h-4" />;
     default:
       return null;
@@ -75,52 +75,55 @@ export default function Dashboard() {
       <div className="max-w-md mx-auto px-6 -mt-4">
         <div className="space-y-4">
           {claims.map((claim) => (
-            <Card
-              key={claim.id}
-              className="overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => handleClaimClick(claim)}
-            >
-              <CardContent className="p-4">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1">
-                    <h3 className="text-base mb-1">{claim.type}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {claim.id}
-                    </p>
-                  </div>
-
-                  <Badge
-                    variant="outline"
-                    className={`${getStatusColor(
-                      claim.status
-                    )} flex items-center gap-1`}
-                  >
-                    {getStatusIcon(claim.status)}
-                    <span className="capitalize">
-                      {claim.status}
-                    </span>
-                  </Badge>
+          <Card
+            key={claim.id}
+            className="overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => navigate(`/claim/${claim.id}`)}
+          >
+            <CardContent className="p-4">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex-1">
+                  <h3 className="text-base mb-1">{claim.type}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {claim.id}
+                  </p>
                 </div>
 
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">
-                    {claim.date}
+                <Badge
+                  variant="outline"
+                  className={`${getStatusColor(claim.status)} flex items-center gap-1`}
+                >
+                  {getStatusIcon(claim.status)}
+                  <span className="capitalize">{claim.status}</span>
+                </Badge>
+              </div>
+
+              {/* 👇 ZONA DE ACCIÓN SEPARADA */}
+              <div
+                className="flex items-center justify-between text-sm"
+                onClick={(e) => e.stopPropagation()} // 🔥 clave
+              >
+                <span className="text-muted-foreground">
+                  {claim.date}
+                </span>
+
+                {claim.amount ? (
+                  <span className="font-medium">{claim.amount}</span>
+                ) : loadingId === claim.id ? (
+                  <span className="text-sm animate-pulse">
+                    ⏳ Calculando...
                   </span>
-
-                  {claim.amount ? (
-                    <span className="font-medium">{claim.amount}</span>
-                  ) : loadingId === claim.id ? (
-                    <span className="text-sm animate-pulse">
-                      ⏳ Calculando...
-                    </span>
-                  ) : (
-                    <span className="text-sm text-muted-foreground">
-                      💸 Click para calcular
-                    </span>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                ) : (
+                  <button
+                    onClick={() => handleClaimClick(claim)}
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
+                    💸 Click para calcular
+                  </button>
+                )}
+              </div>
+            </CardContent>
+          </Card>
           ))}
         </div>
       </div>

@@ -3,6 +3,7 @@ import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
 import IncidentReport from "./pages/incident-report";
 import Camera from "./pages/camera";
+import ClaimDetail from "./pages/claim-detail";
 
 export const router = createBrowserRouter([
   {
@@ -21,4 +22,8 @@ export const router = createBrowserRouter([
     path: "/camera",
     Component: Camera,
   },
+{
+  path: "/claim/:id",
+  Component: ClaimDetail,
+}
 ]);

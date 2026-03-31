@@ -3,9 +3,10 @@ import { createContext, useContext, useState } from "react";
 export interface Claim {
   id: string;
   type: string;
-  status: "pendiente" | "en revisión" | "resuelto";
+  status: "Pendiente" | "En revisión" | "Resuelto";
   date: string;
   amount?: string;
+  description?: string;
 }
 
 interface ClaimsContextType {
@@ -21,37 +22,42 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
     {
       id: "PA-2026-001",
       type: "Vitrocerámica",
-      status: "pendiente",
+      status: "Pendiente",
       date: "12/03/2026",
       amount: "210,00 €",
+      description: "Vitrocerámica con varias grietas y zonas dañadas que impiden su correcto funcionamiento. Riesgo de uso y necesidad de sustitución."
     },
     {
       id: "PA-2026-002",
       type: "Cristalería",
-      status: "en revisión",
+      status: "En revisión",
       date: "11/03/2026",
       amount: "155,50 €",
+      description: "Cristal roto en ventana principal tras impacto. Se evalúa el alcance del daño y el tipo de vidrio necesario para la reposición."
     },
     {
       id: "PA-2026-003",
       type: "Mampara",
-      status: "resuelto",
+      status: "Resuelto",
       date: "10/03/2026",
       amount: "380,00 €",
+      description: "Mampara de baño dañada con rotura parcial de uno de los paneles. Sustitución completa ya realizada."
     },
     {
       id: "PA-2026-004",
       type: "Espejo",
-      status: "en revisión",
+      status: "En revisión",
       date: "09/03/2026",
       amount: "85,00 €",
+      description: "Espejo con fisuras visibles en la superficie debido a un golpe. Se está valorando si reparar o reemplazar."
     },
     {
       id: "PA-2026-005",
       type: "Loza Sanitaria",
-      status: "pendiente",
+      status: "Pendiente",
       date: "08/03/2026",
       amount: "120,00 €",
+      description: "Loza sanitaria dañada con grietas en el inodoro. Se requiere revisión para determinar el tipo de reparación o sustitución."
     },
   ]);
 
@@ -71,7 +77,7 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
         setClaims((prev) =>
           prev.map((claim) =>
             claim.id === id && claim.amount
-              ? { ...claim, status: "en revisión" }
+              ? { ...claim, status: "En revisión" }
               : claim
           )
         );
