@@ -40,6 +40,10 @@ export default function ClaimDetail() {
           <p><strong>Importe:</strong> {claim.amount || "Pendiente"}</p>
           <p><strong>Tamaño:</strong> {claim.size} cm²</p>
           <p><strong>Descripción:</strong> {claim.description} </p>
+          
+          {claim.isBroken && (<p><strong>¿Roto completamente?:</strong> {claim.isBroken}</p>)}
+          {claim.hasCrack && (<p><strong>¿Tiene grietas?:</strong> {claim.hasCrack}</p>)}
+          {claim.material && (<p><strong>Material:</strong> {claim.material}</p>)}
         </div>
 
       </div>

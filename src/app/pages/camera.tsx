@@ -34,6 +34,9 @@ export default function Camera() {
       date: new Date().toLocaleDateString(),
       description: state.description,
       size: Number(state.size), 
+      hasCrack: state.hasCrack,
+      isBroken: state.isBroken,
+      material: state.material
     };
     
     addClaim(newClaim);

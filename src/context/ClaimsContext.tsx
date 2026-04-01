@@ -8,6 +8,10 @@ export interface Claim {
   amount?: string;
   description?: string;
   size?: number;
+
+  hasCrack?: string;
+  isBroken?: string;
+  material?: string;
 }
 
 interface ClaimsContextType {
