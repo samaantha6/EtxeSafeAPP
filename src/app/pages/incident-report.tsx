@@ -19,6 +19,11 @@ export default function IncidentReport() {
   const [size, setSize] = useState("");
   const [category, setCategory] = useState("");
 
+  // Para el formulario dinámico
+  const [hasCrack, setHasCrack] = useState("");
+  const [isBroken, setIsBroken] = useState("");
+  const[material, setMaterial] = useState("");
+
   const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
 
@@ -37,11 +42,30 @@ export default function IncidentReport() {
     return;
   }
 
+  // Validaciones de las preguntas dinámicas
+  if (category === "Cristaleria" && !isBroken) {
+    alert("Indica si está roto completamente");
+    return;
+  }
+
+  if (category === "Vitroceramica" && !hasCrack) {
+    alert("Indica si tiene grietas");
+    return;
+  }
+
+  if (category === "Mobiliario" && !material.trim()) {
+    alert("Indica el material del mueble");
+    return;
+  }
+
   navigate("/camera", {
     state: {
       category,
       description,
       size: Number(size),
+      hasCrack,
+      isBroken,
+      material
     },
   });
 };
@@ -93,6 +117,50 @@ export default function IncidentReport() {
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Preguntas dinámicas */}
+            {category === "Cristaleria" && (
+              <div className="space-y-2">
+                <Label>¿Está roto completamente?</Label>
+                <Select onValueChange={setIsBroken}>
+                  <SelectTrigger className="h-12 w-full">
+                    <SelectValue placeholder="Selecciona" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="si">Sí</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            {category === "Vitroceramica" && (
+              <div className="space-y-2">
+                <Label>¿Tiene grietas visibles?</Label>
+                <Select onValueChange={setHasCrack}>
+                  <SelectTrigger className="h-12 w-full">
+                    <SelectValue placeholder="Selecciona" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="si">Sí</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            {category === "Mobiliario" && (
+              <div className="space-y-2">
+                <Label>Material del mueble</Label>
+                <Input
+                  placeholder="Ej: madera, metal..."
+                  value={material}
+                  onChange={(e) => setMaterial(e.target.value)}
+                  className="h-12"
+                />
+              </div>
+            )}
+
 
             {/* Descripción */}
             <div className="space-y-2">
