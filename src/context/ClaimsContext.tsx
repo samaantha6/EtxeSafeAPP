@@ -31,7 +31,9 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
       date: "12/03/2026",
       amount: "210,00 €",
       description: "Vitrocerámica con varias grietas y zonas dañadas que impiden su correcto funcionamiento. Riesgo de uso y necesidad de sustitución.",
-      size: 30
+      size: 30,
+      hasCrack: "Sí"
+
     },
     {
       id: "PA-2026-002",
@@ -40,8 +42,8 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
       date: "11/03/2026",
       amount: "155,50 €",
       description: "Cristal roto en ventana principal tras impacto. Se evalúa el alcance del daño y el tipo de vidrio necesario para la reposición.",
-      size: 15
-
+      size: 15,
+      isBroken: "Sí"
     },
     {
       id: "PA-2026-003",
