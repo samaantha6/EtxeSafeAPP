@@ -43,12 +43,12 @@ export default function IncidentReport() {
   }
 
   // Validaciones de las preguntas dinámicas
-  if (category === "Cristaleria" && !isBroken) {
+  if (category === "Cristalería" && !isBroken) {
     alert("Indica si está roto completamente");
     return;
   }
 
-  if (category === "Vitroceramica" && !hasCrack) {
+  if (category === "Vitrocerámica" && !hasCrack) {
     alert("Indica si tiene grietas");
     return;
   }
@@ -106,8 +106,8 @@ export default function IncidentReport() {
                   <SelectValue placeholder="Selecciona una categoría" />
                 </SelectTrigger>
                 <SelectContent position="popper"> 
-                  <SelectItem value="Vitroceramica">Vitrocerámica</SelectItem>
-                  <SelectItem value="Cristaleria">Cristalería</SelectItem>
+                  <SelectItem value="Vitrocerámica">Vitrocerámica</SelectItem>
+                  <SelectItem value="Cristalería">Cristalería</SelectItem>
                   <SelectItem value="Espejos">Espejos</SelectItem>
                   <SelectItem value="Mamparas">Mamparas</SelectItem>
                   <SelectItem value="Sanitarios">Sanitarios</SelectItem>
@@ -119,7 +119,7 @@ export default function IncidentReport() {
             </div>
 
             {/* Preguntas dinámicas */}
-            {category === "Cristaleria" && (
+            {category === "Cristalería" && (
               <div className="space-y-2">
                 <Label>¿Está roto completamente?</Label>
                 <Select onValueChange={setIsBroken}>
@@ -134,7 +134,7 @@ export default function IncidentReport() {
               </div>
             )}
 
-            {category === "Vitroceramica" && (
+            {category === "Vitrocerámica" && (
               <div className="space-y-2">
                 <Label>¿Tiene grietas visibles?</Label>
                 <Select onValueChange={setHasCrack}>

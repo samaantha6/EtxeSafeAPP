@@ -1,5 +1,12 @@
 import { createContext, useContext, useState } from "react";
 
+
+export interface ChatMessage {
+  id: number;
+  text: string;
+  sender: "user" | "bot";
+}
+
 export interface Claim {
   id: string;
   type: string;
@@ -12,6 +19,8 @@ export interface Claim {
   hasCrack?: string;
   isBroken?: string;
   material?: string;
+
+  chatHistory?: ChatMessage[]; // <-- AÑADE ESTA LÍNEA
 }
 
 interface ClaimsContextType {
@@ -67,7 +76,7 @@ export function ClaimsProvider({ children }: { children: React.ReactNode }) {
     },
     {
       id: "PA-2026-005",
-      type: "Loza Sanitaria",
+      type: "Sanitario",
       status: "Pendiente",
       date: "08/03/2026",
       amount: "120,00 €",
